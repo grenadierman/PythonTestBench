@@ -4,9 +4,6 @@ Contains generic data for game context.
 
 To do: Monster / Map / Old One / Curse data
 
-Notes:
-	Should players be stored as name/object pair? 
-
 """
 from player import Player
 from worldmap import Worldmap
@@ -20,14 +17,6 @@ class Context:
 	numplayers = -1 
 	players = {} 
         world = None
-
-	"""	
-	# Old one stats
-	_oldone = 'SUPER DUPER SPOOKY'
-
-	# World stats -  placeholder for now
-	_curse = 'SPOOKY CURSE'
-	"""
 	
 	def __init__(self, numplayers, playerchars):
 
@@ -36,14 +25,15 @@ class Context:
 
                 # For each player, create a player object to contain player data
 		for x in xrange(self.numplayers):
-			self.players[playerchars[x][0]] = Player(playerchars[x][0], playerchars[x][1])
+			self.players[playerchars[x][0]] = Player(playerchars[x][1])
 
                 # Create map object, which automatically builds map from world data
                 self.world = Worldmap()
                 
                 # Set player starting position in map object from player object data
                 for playername in self.players:
-                    self.world.set_location(self.players[playername], self.players[playername].get_pos())
+                    playerloc = self.players[playername].location 
+                    self.world.locations[playerloc][PLAYERS].append(playername)
 
 	# Might not be needed
 	def set_old_one(self, placeholder):

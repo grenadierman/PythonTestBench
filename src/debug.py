@@ -13,10 +13,8 @@ testplayers.append(('iRONVAGiNA', 'test_guy_2'))
 context = Context(numplayers, testplayers)
 
 print '\n###### Locations ######'
-for loc in context.world.get_locations():
-    print 'Location: %s Players: %s' % (loc, context.world.get_loc_players(loc))
-    con = context.world.get_connections(loc)
-    print 'Location connections:\nNorth: %s\nSouth: %s\nEast: %s\nWest: %s' % (con[0], con[1], con[2], con[3])
+for loc in context.world.locations:
+    print 'Location: %s Players: %s' % (loc, context.world.locations[loc][PLAYERS])
 
 print '\n####### Players #######'
 print 'Context contains players %s' % context.players.keys()
