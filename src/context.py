@@ -9,25 +9,17 @@ Notes:
 
 """
 from player import Player
+from worldmap import Worldmap
 from constants import *
 
-import logging
 from random import randint
 
 class Context:
-	
-	# Setup context logging
-	if DEBUG:
-		logging.basicConfig(level=logging.DEBUG)
-	else:
-		logging.basicConfig(level=logging.ERROR)
 
-	_log = logging.getLogger(' ' + __name__)
-
-
-	# Players
-	_numplayers = -1 
-	_players = {} 
+        # Context class variables
+	numplayers = -1 
+	players = {} 
+        world = None
 
 	"""	
 	# Old one stats
@@ -39,14 +31,19 @@ class Context:
 	
 	def __init__(self, numplayers, playerchars):
 
-		self._numplayers = int(numplayers)
+                # Set how many players are playing
+		self.numplayers = numplayers
 
-		for x in xrange(self._numplayers):
-			self._players[playerchars[x][0]] = Player(playerchars[x][0], playerchars[x][1])
+                # For each player, create a player object to contain player data
+		for x in xrange(self.numplayers):
+			self.players[playerchars[x][0]] = Player(playerchars[x][0], playerchars[x][1])
 
-		if DEBUG:
-			for key in self._players:
-				self._log.debug(' %s, %s', self._players[key]._name, self._players[key]._character)
+                # Create map object, which automatically builds map from world data
+                self.world = Worldmap()
+                
+                # Set player starting position in map object from player object data
+                for playername in self.players:
+                    self.world.set_location(self.players[playername], self.players[playername].get_pos())
 
 	# Might not be needed
 	def set_old_one(self, placeholder):
@@ -63,5 +60,3 @@ class Context:
 	# Might move this function to another file once more utils surface
 	def roll(self):
 		return randint(1, 6)
-
-

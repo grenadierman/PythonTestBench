@@ -22,7 +22,7 @@ class Player:
 			self._stats[SPEED] = 3
 			self._stats[AGILITY] = 2
 			self._stats[LUCK] = 3
-			self._pos = 0
+			self._pos = 'loc1'
 
 		elif character == 'test_guy_2':
 			self._character = character	
@@ -34,11 +34,16 @@ class Player:
 			self._stats[SPEED] = 4
 			self._stats[AGILITY] = 1
 			self._stats[LUCK] = 2
-			self._pos = 4
+			self._pos = 'loc5'
 
 	def get_pos(self):
 		return self._pos
 
+	def set_pos(self, newpos):
+		self._pos = newpos
+
+        def get_name(self):
+            return self._name
 
 
 
