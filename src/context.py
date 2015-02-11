@@ -13,27 +13,22 @@ from random import randint
 
 class Context:
 
-        # Context class variables
-	numplayers = -1 
-	players = {} 
-        world = None
-	
-	def __init__(self, numplayers, playerchars):
+    def __init__(self, numplayers, playerchars):
+        # Set how many players are playing
+        self.numplayers = numplayers
+        self.players = {}
 
-                # Set how many players are playing
-		self.numplayers = numplayers
+        # For each player, create a player object to contain player data
+        for x in xrange(self.numplayers):
+            self.players[playerchars[x][0]] = Player(playerchars[x][1])
 
-                # For each player, create a player object to contain player data
-		for x in xrange(self.numplayers):
-			self.players[playerchars[x][0]] = Player(playerchars[x][1])
-
-                # Create map object, which automatically builds map from world data
-                self.world = Worldmap()
+            # Create map object, which automatically builds map from world data
+            self.world = Worldmap()
                 
-                # Set player starting position in map object from player object data
-                for playername in self.players:
-                    playerloc = self.players[playername].location 
-                    self.world.locations[playerloc][PLAYERS].append(playername)
+            # Set player starting position in map object from player object data
+            for playername in self.players:
+                playerloc = self.players[playername].location 
+                self.world.locations[playerloc].append(playername)
 
 	# Might not be needed
 	def set_old_one(self, placeholder):
