@@ -45,3 +45,16 @@ class Context:
 	# Might move this function to another file once more utils surface
 	def roll(self):
 		return randint(1, 6)
+	def success(self, CURSE):
+		dice = roll();
+		print 'Rolled a %n' % dice
+		if CURSE == 1 and dice > 5:
+			return 1
+		elif CURSE == 0 and dice > 4:
+			return 1
+		elif CURSE == -1 and dice > 3:
+			return 1
+		else:
+			return 0
+	def skillcheck(self, dicepool, difficulty):
+		return

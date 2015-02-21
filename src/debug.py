@@ -48,6 +48,9 @@ try:
     print 'Testing iRONVAGiNA - Roll 6...'
     result = ShortestPath.calculate(context.players['iRONVAGiNA'].location, context.world.links, 6)
     print 'Test results: %s\n' % result
+    print 'Testing dice success diGiTALQU33F'
+    result = context.success(0)
+    print ' Test results: %s\n' % result
 
 except Exception as e:
     print 'Failed shortest path test:\n%s: %s' % (type(e).__name__, e)

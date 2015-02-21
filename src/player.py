@@ -6,7 +6,7 @@ class Player:
 	def __init__(self, character):
 		# Initialize player data
                 self.character = character
-                self.stats = [0, 0, 0, 0, 0, 0, 0, 0]
+                self.stats = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
                 self.location = 'Unknown'
 
 		if character == 'test_guy_1':
