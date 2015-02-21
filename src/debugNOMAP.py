@@ -8,7 +8,7 @@ print '\n#################### STARTING BASIC TEST ####################'
 print '\n######## Testing Success/Combat ########\n'
 
 print 'Testing dice success diGiTALQU33F'
-result = Context.test
+result = Context.success(0)
 print ' Test results: %s\n' % result
 print '\n######################## END OF TEST ########################\n'
 
